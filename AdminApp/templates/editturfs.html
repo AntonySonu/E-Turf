@@ -1,0 +1,164 @@
+{% extends 'admincall.html' %}
+{% block nav %}
+{% endblock %}
+{% block side %}
+<li class="nav-item menu-open">
+    <a href="#" class="nav-link active">
+      <i class="nav-icon fas fa-edit"></i>
+      <p>
+        Side Menu
+        <i class="fas fa-angle-left right"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="/ahome" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Home</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/location" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Add Locations</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/turfs" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Add Turfs</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/vlocat" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Locations</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/vturf" class="nav-link active">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Turfs</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/vmanager" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Managers</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vamanager" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Approved Managers</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/vuserbook" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View User Bookings</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/vfeedback" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Feedbacks</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/vusers" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Users</p>
+        </a>
+      </li>
+    </ul>
+  </li>
+{% endblock %}
+{% block main %}
+<div class="row pt-5">
+    <!-- left column -->
+     <div class="col-1"></div>
+    <div class="col-10">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Edit Turf</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+         {% for i in vtd %}
+        <form action="{% url 'vupdate' id=i.id %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Turf Name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Name" name="tname" value="{{i.Turf_Name}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFile">Turf Image</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input form-control" id="exampleInputFile" name="timg" value="{{i.Turf_Image}}">
+                  <label class="custom-file-label" for="exampleInputFile">Image</label>
+                </div>
+                <div class="input-group-append">
+                  <span class="input-group-text">Upload</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Turf Booking Price</label>
+                <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Price" name="tbprice" value="{{i.Turf_Booking_price}}">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Turf Facilities</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Facilities" name="tfacl" value="{{i.Turf_Facilities}}">
+            </div>
+              
+            <div class="form-group">
+                <label>Turf Location</label>
+                <select class="form-control" name="tlocate">
+                <option>Select Location</option>
+                {% for i in vtl %}
+                <option>{{i.Location_Name}}</option required>
+                {% endfor %}
+                </select>
+                <p style="font-size: x-small; font-weight: bolder;" >*Reselect The Location</p>
+            </div>
+
+            <div class="form-group">
+              <label>Turf Manager Name</label>
+              <select class="form-control" name="tmname">
+              <option>Select Manager</option>
+              {% for i in vmd %}
+              <option value="{{i.ManagerReg_Name}}">{{i.ManagerReg_Name}}</option>
+              {% endfor %}
+              </select>
+          </div>
+            
+            <div class="form-group">
+                <label for="exampleInputPassword1">Turf Working Time</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Open Time-Closing Time" name="ttime" value="{{i.Turf_Working_time}}">
+                <p style="font-size: x-small; font-weight: bolder;" >*Open Time(AM/PM)-Closing Time(AM/PM)</p>
+            </div>
+            
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+              <label class="form-check-label" for="exampleCheck1">Confirm</label>
+            </div>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+        {% endfor %}
+      </div>
+      </div>
+      <div class="col-1"></div>
+      <!-- /.card -->
+    </div>
+      <!-- general form elements -->
+{% endblock %}

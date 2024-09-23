@@ -1,0 +1,136 @@
+{% extends 'admincall.html' %}
+{% block nav %}
+{% endblock %}
+{% block side %}
+<li class="nav-item menu-open">
+    <a href="#" class="nav-link active">
+      <i class="nav-icon fas fa-edit"></i>
+      <p>
+        Side Menu
+        <i class="fas fa-angle-left right"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="ahome" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Home</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="location" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Add Locations</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="turfs" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Add Turfs</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vlocat" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Locations</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vturf" class="nav-link active">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Turfs</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vmanager" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Managers</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vamanager" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Approved Managers</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vuserbook" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View User Bookings</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vfeedback" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Feedbacks</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vusers" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Users</p>
+        </a>
+      </li>
+    </ul>
+  </li>
+{% endblock %}
+{% block main %}
+<!-- /.row -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Turf List</h3>
+
+        <div class="card-tools">
+          <div class="input-group input-group-sm" style="width: 150px;">
+            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-default">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body table-responsive p-0" style="height: 400px;">
+        <table class="table table-head-fixed text-nowrap">
+          <thead>
+            <tr>
+              <th>Turf ID</th>
+              <th>Turf Name</th>
+              <th>Turf Image</th>
+              <th>Turf Working time</th>
+              <th>Turf Booking price</th>
+              <th>Turf Location</th>
+              <th>Turf Facilities</th>
+              <th>Turf Manager Name</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+            {% for i in vt %}
+              <tr>
+                  <td>{{i.id}}</td>
+                  <td>{{i.Turf_Name}}</td>
+                  <td><img src="{{i.Turf_Image.url}}" alt="..." height="180px" width="300px"></td>
+                  <td>{{i.Turf_Working_time}}</td>
+                  <td>{{i.Turf_Booking_price}}</td>
+                  <td>{{i.Turf_Location}}</td>
+                  <td>{{i.Turf_Facilities}}</td>
+                  <td>{{i.Turf_Manager_Name}}</td>
+                  <td><a href="{% url 'vedit' id=i.id %}" class="btn btn-primary">Edit</a></td>
+                  <td><a href="{% url 'vdelete' id=i.id %}" class="btn btn-primary">Delete</a></td>
+              </tr>
+              {% endfor %}
+          </tbody>
+          </table>
+      </div>
+      <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+      </div>
+      </div>
+{% endblock %}

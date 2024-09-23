@@ -1,0 +1,178 @@
+{% extends 'admincall.html' %}
+{% block nav %}
+{% endblock %}
+{% block side %}
+<li class="nav-item menu-open">
+    <a href="#" class="nav-link active">
+      <i class="nav-icon fas fa-edit"></i>
+      <p>
+        Side Menu
+        <i class="fas fa-angle-left right"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="ahome" class="nav-link active">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Home</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="location" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Add Locations</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="turfs" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Add Turfs</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vlocat" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Locations</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vturf" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Turfs</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vmanager" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Managers</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vamanager" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Approved Managers</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vuserbook" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View User Bookings</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vfeedback" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Feedbacks</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="vusers" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>View Users</p>
+        </a>
+      </li>
+    </ul>
+  </li>
+{% endblock %}
+{% block main %}
+<div class="row" style="padding-left: 10px; padding-right: 10px;">
+  <div class="col-lg-3 col-6 mt-5">
+    <!-- small box -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{countloc}}</h3>
+  
+        <p>Location's Registered</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-map"></i>
+      </div>
+      <a href="vlocat" class="small-box-footer">View Locations Registered <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <div class="col-lg-3 col-6 mt-5">
+    <!-- small box -->
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>{{countturf}}</h3>
+  
+        <p>Turf's Registered</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-map"></i>
+      </div>
+      <a href="vturf" class="small-box-footer">View Turf's Registered <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+<div class="col-lg-3 col-6 mt-5">
+  <!-- small box -->
+  <div class="small-box bg-danger">
+    <div class="inner">
+      <h3>{{countmanager}}</h3>
+
+      <p>Manager's Registered</p>
+    </div>
+    <div class="icon">
+      <i class="ion ion-person"></i>
+    </div>
+    <a href="vmanager" class="small-box-footer">View Manager Request's <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+<div class="col-lg-3 col-6 mt-5">
+  <!-- small box -->
+  <div class="small-box bg-success">
+    <div class="inner">
+      <h3>{{countamanager}}</h3>
+
+      <p>Manager's Approved</p>
+    </div>
+    <div class="icon">
+      <i class="ion ion-person"></i>
+    </div>
+    <a href="vamanager" class="small-box-footer">View Approved Manager's <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+<div class="col-lg-3 col-6 mt-5">
+  <!-- small box -->
+  <div class="small-box bg-primary">
+    <div class="inner">
+      <h3>{{countuser}}</h3>
+
+      <p>User's Registered</p>
+    </div>
+    <div class="icon">
+      <i class="ion ion-person"></i>
+    </div>
+    <a href="vusers" class="small-box-footer">View Approved Manager's <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+<div class="col-lg-3 col-6 mt-5">
+  <!-- small box -->
+  <div class="small-box bg-warning">
+    <div class="inner">
+      <h3>{{countbook}}</h3>
+
+      <p>Turf Booking's</p>
+    </div>
+    <div class="icon">
+      <i class="ion ion-map"></i>
+    </div>
+    <a href="vuserbook" class="small-box-footer">View Approved Manager's <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+<div class="col-lg-3 col-6 mt-5">
+  <!-- small box -->
+  <div class="small-box bg-primary">
+    <div class="inner">
+      <h3>{{countfeedback}}</h3>
+
+      <p>User's Feedback</p>
+    </div>
+    <div class="icon">
+      <i class="ion ion-person"></i>
+    </div>
+    <a href="vfeedback" class="small-box-footer">View Approved Manager's <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+</div>
+{% endblock %}

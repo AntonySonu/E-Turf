@@ -1,0 +1,122 @@
+{% extends 'admincall.html' %}
+{% block nav %}
+{% endblock %}
+{% block side %}
+<li class="nav-item menu-open">
+  <a href="#" class="nav-link active">
+    <i class="nav-icon fas fa-edit"></i>
+    <p>
+      Side Menu
+      <i class="fas fa-angle-left right"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="ahome" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Home</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="location" class="nav-link active">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Add Locations</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="turfs" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Add Turfs</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="vlocat" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>View Locations</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="vturf" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>View Turfs</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="vmanager" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>View Managers</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="vamanager" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>View Approved Managers</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="vuserbook" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>View User Bookings</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="vfeedback" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>View Feedbacks</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="vusers" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>View Users</p>
+      </a>
+    </li>
+  </ul>
+</li>
+{% endblock %}
+{% block main %}
+<div class="row pt-5">
+  <!-- left column -->
+   <div class="col-1"></div>
+  <div class="col-10">
+    <!-- general form elements -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Add Locations</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form action="{% url 'linsert' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Location Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Name" name="lname">
+          </div>
+          
+          <div class="form-group">
+            <label for="exampleInputFile">Location Image</label>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input form-control" id="exampleInputFile" name="limg">
+                <label class="custom-file-label" for="exampleInputFile">Image</label>
+              </div>
+              <div class="input-group-append">
+                <span class="input-group-text">Upload</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+    </div>
+    <div class="col-1"></div>
+    <!-- /.card -->
+  </div>
+    <!-- general form elements -->
+{% endblock %}

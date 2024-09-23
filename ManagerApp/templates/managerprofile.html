@@ -1,0 +1,125 @@
+{% extends 'managercall.html' %}
+{% load static %}
+
+{% block nav %}
+            <nav class="navbar navbar-expand-lg" style="background-color: var(--secondary-color);">
+                <div class="container">
+                    <a class="navbar-brand" href="">
+                        <i class="bi-back"></i>
+                        <span>E-Turf</span>
+                    </a>
+
+                    <div class="d-lg-none ms-auto me-4">
+                        <a href="" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="/" hidden>Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="mhome">Home</a>
+                            </li>
+                            {% if 'm_id' not in request.session %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="login">Login</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="uregister">Register</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="./mreg">Register as a Manager</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="massignturf">Assigned Turf</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="mturfbook">Turf Bookings</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'managerlogout' %}">Logout</a>
+                            </li>
+                            
+                            <!-- <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
+
+                                    <li><a class="dropdown-item" href="contact.html">Contact Form</a></li>
+                                </ul>
+                            </li> -->
+                        </ul>
+
+                        <div class="d-none d-lg-block">
+                            <!-- <a href="" class="navbar-icon bi-person smoothscroll"></a> -->
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </nav>
+            <br>
+            {% endblock %}
+{% block slide %}
+{% endblock %}
+{% block main %}
+<section class="section-padding section-bg">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <div class="col-lg-12 col-12 ">
+                <h3 class="">Profile</h3>
+            </div>
+
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+{% for i in vmd %}
+<section class="main">
+    <div class="profile-card">
+      <div class="image">
+        <img src="{{i.ManagerReg_Image}}" alt="..." class="profile-pic">
+      </div>
+      <div class="data">
+        <h2>{{i.ManagerReg_Name}}</h2>
+        <span><label>Email :</label> {{i.ManagerReg_Email}}</span>
+        <span><label>Ph Number :</label> {{i.ManagerReg_PhNumber}}</span>
+        <span><label>Gender :</label> {{i.ManagerReg_Gender}}</span>
+        <span><label>Experience :</label> {{i.ManagerReg_Experience}}</span>
+        <span><label>Register Status :</label> {{i.ManagerReg_Status}}</span>
+      </div>
+      <!-- <div class="row">
+        <div class="info">
+          <h3>Following</h3>
+          <span>120</span>
+        </div>
+        <div class="info">
+          <h3>Followers</h3>
+          <span>5000</span>
+        </div>
+        <div class="info">
+          <h3>Posts</h3>
+          <span>209</span>
+        </div>
+      </div> -->
+      <!-- <div class="buttons">
+        <a href="#" class="btn">Message</a>
+        <a href="#" class="btn">Follow Me</a>
+      </div> -->
+    </div>
+  </section>
+  {% endfor %}
+</div>
+</div>
+</section>
+{% endblock %}

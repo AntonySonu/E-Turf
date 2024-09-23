@@ -1,0 +1,114 @@
+{% extends 'usercall.html' %}
+{% load static %}
+{% block nav %}
+            <nav class="navbar navbar-expand-lg" style="background-color: var(--secondary-color);">
+                <div class="container">
+                    <a class="navbar-brand" href="">
+                        <i class="bi-back"></i>
+                        <span>E-Turf</span>
+                    </a>
+
+                    <div class="d-lg-none ms-auto me-4">
+                        <a href="" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/" hidden>Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/">Home</a>
+                            </li>
+
+                            {% if 'u_id' not in request.session %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="/uregister">Register</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="../mreg">Register as a Manager</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/bhistory"> Booking History</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact">Feedback</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'userlogout' %}">Logout</a>
+                            </li>
+                            {% endif %}
+
+                            <!-- <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
+
+                                    <li><a class="dropdown-item" href="contact.html">Contact Form</a></li>
+                                </ul>
+                            </li> -->
+                        </ul>
+
+                        <!-- <div class="d-none d-lg-block">
+                            <a href="" class="navbar-icon bi-person smoothscroll"></a>
+                        </div> -->
+                    </div>
+                    
+                </div>
+            </nav>
+            {% endblock %}
+{% block slide %}
+{% endblock %}
+{% block main %}
+<section class="faq-section section-padding" id="section_4">
+    <div class="container">
+        <div class="row">
+            {% for i in vmt %}
+            <div class="col-lg-6 col-12">
+                <h2 class="mb-5 mt-4">Turf Information</h2>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="col-lg-5 col-10 mb-5">
+                <img src="{{i.Turf_Image.url}}" class="img-fluid" alt="FAQs">
+            </div>
+            
+            <div class="col-lg-6 col-12 m-auto">
+            <div class="accordion" id="accordionExample">
+            <div class="d-flex">
+                <div>
+                    <h5 class="mb-4">{{i.Turf_Name}}</h5>
+                    <p class="mb-1"><label>Location :</label> {{i.Turf_Location}}</p>
+                    <p class="mb-1"><label>Working Time :</label> {{i.Turf_Working_time}}</p>
+                    <p class="mb-1"><label>Booking Price :</label> {{i.Turf_Booking_price}}</p>
+                    <p class="mb-1"><label>Facilities :</label> {{i.Turf_Facilities}}</p>
+                    <p class="mb-1"><label>Manager Name :</label> {{i.Turf_Manager_Name}}</p>
+                </div>
+            </div>
+            {% if 'u_id' not in request.session %}
+            <a href="/login" class="btn custom-btn mt-2 mt-lg-3">Book Now</a>
+            {% else %}
+            <a href="{% url 'bturf' id=i.id %}" class="btn custom-btn mt-2 mt-lg-3">Book Now</a>
+            {% endif %}
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+                        
+{% endblock %}
